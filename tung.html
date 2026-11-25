@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kafe Kopi Senja</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigasi Utama -->
+    <header>
+        <div class="logo">☕ Kopi Senja</div>
+        <nav>
+            <button class="nav-btn active" onclick="bukaHalaman('beranda', this)">Beranda</button>
+            <button class="nav-btn" onclick="bukaHalaman('katalog', this)">Katalog Menu</button>
+            <button class="nav-btn" onclick="bukaHalaman('kontak', this)">Lokasi & Kontak</button>
+        </nav>
+    </header>
+
+    <!-- HALAMAN 1: BERANDA -->
+    <main id="beranda" class="halaman aktif">
+        <div class="hero">
+            <h1>Nikmati Hangatnya Kopi di Kala Senja</h1>
+            <p>Racikan biji kopi nusantara pilihan yang diseduh sepenuh hati untuk menemani waktu santaimu.</p>
+            <button class="btn-utama" onclick="bukaHalaman('katalog', document.querySelectorAll('.nav-btn')[1])">Lihat Menu Kami</button>
+        </div>
+        <div class="keunggulan">
+            <div class="card-info">
+                <h3>🌱 Biji Kopi Lokal</h3>
+                <p>Dipetik langsung dari petani kopi terbaik di dataran tinggi Indonesia.</p>
+            </div>
+            <div class="card-info">
+                <h3>🌅 Suasana Nyaman</h3>
+                <p>Tempat yang tenang dan hangat, cocok untuk bekerja maupun bersantai.</p>
+            </div>
+            <div class="card-info">
+                <h3>🥐 Camilan Segar</h3>
+                <p>Pendamping kopi yang dipanggang hangat setiap pagi.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- HALAMAN 2: KATALOG MENU -->
+    <main id="katalog" class="halaman">
+        <h2 class="judul-halaman">Katalog Menu Kopi Senja</h2>
+        <div class="grid-menu">
+            <div class="card-menu">
+                <div class="badge">Favorit</div>
+                <h3>Es Kopi Susu Senja</h3>
+                <p>Perpaduan espresso, susu segar, dan gula aren organik khas Kopi Senja.</p>
+                <span class="harga">Rp 22.000</span>
+            </div>
+            <div class="card-menu">
+                <h3>V60 Manual Brew</h3>
+                <p>Seduhan kopi filter dengan pilihan biji Arabika Gayo, Toraja, atau Kintamani.</p>
+                <span class="harga">Rp 25.000</span>
+            </div>
+            <div class="card-menu">
+                <h3>Caffè Latte</h3>
+                <p>Espresso lembut dengan lapisan steamed milk yang creamy.</p>
+                <span class="harga">Rp 24.000</span>
+            </div>
+            <div class="card-menu">
+                <h3>Matcha Senja Latte</h3>
+                <p>Bubuk matcha premium Jepang berpadu dengan susu segar yang lembut.</p>
+                <span class="harga">Rp 26.000</span>
+            </div>
+            <div class="card-menu">
+                <h3>Croissant Mentega</h3>
+                <p>Pastry renyah di luar dan lembut di dalam, cocok dicelup ke kopi hangat.</p>
+                <span class="harga">Rp 18.000</span>
+            </div>
+            <div class="card-menu">
+                <h3>Pisang Goreng Gula Aren</h3>
+                <p>Pisang kepok renyah dengan siraman saus gula aren dan taburan kayu manis.</p>
+                <span class="harga">Rp 20.000</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- HALAMAN 3: LOKASI & KONTAK -->
+    <main id="kontak" class="halaman">
+        <h2 class="judul-halaman">Kunjungi Kedai Kami</h2>
+        <div class="kontak-box">
+            <div class="info-lokasi">
+                <h3>Alamat Kedai</h3>
+                <p>Jl. Kenangan Senja No. 45, Kota Magelang, Jawa Tengah</p>
+                
+                <h3>Jam Operasional</h3>
+                <p>Senin - Jumat: 08.00 - 22.00 WIB</p>
+                <p>Sabtu - Minggu: 07.00 - 23.00 WIB</p>
+
+                <h3>Hubungi & Reservasi</h3>
+                <p>WhatsApp: 0812-3456-7890</p>
+                <p>Instagram: @kopisenja.id</p>
+            </div>
+            <form class="form-pesan" onsubmit="kirimPesan(event)">
+                <h3>Kirim Pesan / Kritik</h3>
+                <input type="text" placeholder="Nama Anda" required>
+                <input type="email" placeholder="Email Anda" required>
+                <textarea rows="4" placeholder="Tulis pesan atau pertanyaan..." required></textarea>
+                <button type="submit" class="btn-utama">Kirim Pesan</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Kafe Kopi Senja. Semua Hak Dilindungi.</p>
+    </footer>
+
+    <!-- Script Simpel untuk Berpindah Halaman -->
+    <script>
+        function bukaHalaman(idHalaman, tombol) {
+            // Sembunyikan semua halaman
+            document.querySelectorAll('.halaman').forEach(hal => hal.classList.remove('aktif'));
+            // Nonaktifkan semua tombol navigasi
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            
+            // Tampilkan halaman yang dipilih
+            document.getElementById(idHalaman).classList.add('aktif');
+            // Tandai tombol navigasi yang aktif
+            tombol.classList.add('active');
+        }
+
+        function kirimPesan(e) {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah terkirim ke tim Kopi Senja.');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
